@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\News;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,6 +13,16 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::get('news', 'NewsController@index');
+
+Route::get('news/{news}', 'NewsController@show');
+
+Route::post('news', 'NewsController@store');
+
+Route::put('news/{news}', 'ArticleController@update');
+
+Route::delete('news/{news}', 'NewsController@delete');
 
     Route::group([
         'prefix' => 'auth'
@@ -26,5 +37,7 @@ use Illuminate\Http\Request;
             Route::get('user', 'AuthController@user');
         });
     });
+	
+	
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();});
